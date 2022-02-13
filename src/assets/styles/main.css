@@ -242,11 +242,3 @@ h3 {
 .marker-cluster-small div {
 	background-color: #aad266 !important;
 }
-
-.circle {
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	background-image: url('../images/eau.png');
-	text-align: center;
-}

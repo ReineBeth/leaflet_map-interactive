@@ -1,16 +1,10 @@
-// let tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-// 	maxZoom: 18,
-// });
-
 const maCarte = L.map('map', {
 	zoomControl: false,
 	attributionControl: false,
 	maxZoom: 20,
 }).setView([45.51, -73.68], 10.5);
-// .addLayer(tiles);
 
 // Sélection de couches
-
 const fondGris = L.esri.Vector.vectorBasemapLayer('ArcGIS:LightGray', {
 	apikey: apiKey,
 });
@@ -156,18 +150,18 @@ const markers = L.markerClusterGroup();
 const coucheInterets = L.geoJSON(pointsInterets, {
 	pointToLayer: function (feature, latlng) {
 		let markerInteret;
-		
-		if(feature.properties.Element == 'SUV') {
+
+		if (feature.properties.Element == 'SUV') {
 			markerInteret = markerVelo;
-		} else if(feature.properties.Element == 'BNC') {
+		} else if (feature.properties.Element == 'BNC') {
 			markerInteret = markerBanc;
-		} else if(feature.properties.Element == 'TPN') {
+		} else if (feature.properties.Element == 'TPN') {
 			markerInteret = markerPicnic;
-		} else if(feature.properties.Element == 'FAB') {
+		} else if (feature.properties.Element == 'FAB') {
 			markerInteret = markerEau;
 		}
 
-		return L.marker(latlng, {icon: markerInteret});
+		return L.marker(latlng, { icon: markerInteret });
 	},
 });
 
@@ -186,12 +180,14 @@ let overlays = {
 L.control.layers(baseLayers, overlays).addTo(maCarte);
 
 // Échelle et zoom
+
 let echelle = L.control
 	.scale({ imperial: true, maxWidth: 500, position: 'bottomright' })
 	.addTo(maCarte);
 let zoom = new L.Control.Zoom({ position: 'bottomright' }).addTo(maCarte);
 
 // Barre de recherche
+
 const searchControl = L.esri.Geocoding.geosearch({
 	position: 'topleft',
 	placeholder: 'Entrer une adresse',
@@ -207,7 +203,6 @@ const searchControl = L.esri.Geocoding.geosearch({
 	],
 }).addTo(maCarte);
 
-// Point lorsque localisation chercher est trouvé
 const couchePoints = L.layerGroup();
 couchePoints.addTo(maCarte);
 
