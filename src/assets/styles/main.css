@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Poppins:wght@300;400&display=swap');
+
+body {
+	font-family: sans-serif;
+	font-family: 'Poppins', sans-serif;
+}
+
+.entete {
+	text-align: center;
+	background: #011627;
+	color: #d6deeb;
+	padding: 2rem;
+	min-height: 10vh;
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.entete__bouton {
+	padding: 1rem 1.5rem;
+	border: #be3543 3px solid;
+	background: #be3543;
+	color: #d6deeb;
+	font-size: 1.2rem;
+	cursor: pointer;
+	font-weight: bold;
+	border-radius: 5px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.entete__bouton:hover {
+	background: transparent;
+}
+
+.entete__bouton:disabled {
+	opacity: 0.4;
+	cursor: initial;
+}
+.entete__bouton:disabled:hover {
+	background: #be3543;
+}
+
+.contenant {
+	position: relative;
+	width: 100%;
+	height: 65vh;
+}
+
+.contenant__carte {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.contenant__signature {
+	position: absolute;
+	z-index: 500;
+	bottom: 0;
+	left: 25px;
+	background: #d6deeb;
+	padding: 0.5rem;
+	border-radius: 3px;
+	border: #011627 1px solid;
+}
+
+.legende {
+	background: #d6deeb;
+	width: 15%;
+	padding: 1rem;
+	border-radius: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin: 0.5rem auto;
+	font-size: 0.8rem;
+	position: absolute;
+	left: 25px;
+	z-index: 500;
+	top: 50%;
+	transform: translateY(-50%);
+	border: #011627 1px solid;
+}
+
+.legende__titre {
+	flex-basis: 100%;
+	text-align: center;
+}
+
+.legende__carte__annuelle,
+.legende__carte__saisonniere,
+.legende__carte__poitrimoines,
+.legende__carte__position {
+	position: relative;
+}
+
+.legende__carte__annuelle::after,
+.legende__carte__saisonniere::after {
+	content: '';
+	position: absolute;
+	height: 5px;
+	width: 35px;
+	border-radius: 5px;
+	background-color: #56dbca;
+	right: -15px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.legende__carte__saisonniere::after {
+	background-color: #cc70d6;
+	right: -45px;
+}
+
+.legende__carte__poitrimoines::after {
+	content: '';
+	position: absolute;
+	width: 25px;
+	aspect-ratio: 1/1;
+	border-radius: 5px;
+	background-color: #153f7769;
+	border: 3px solid #154077;
+	top: 50%;
+	transform: translateY(-50%);
+	right: -40px;
+}
+
+.legende__carte__position::after {
+	content: '';
+	background: url(../images/icon_person.png);
+	background-position: center;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.leaflet-interactive {
+	position: absolute;
+}

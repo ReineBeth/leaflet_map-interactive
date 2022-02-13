@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./assets/styles/main.css" />
+		<script src="./assets/script/main.js" defer></script>
+		<script src="./assets/script/cleAPI.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+			crossorigin=""
+		/>
+
+		<script
+			src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+			crossorigin=""
+		></script>
+
+		<script
+			src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"
+			integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ=="
+			crossorigin=""
+		></script>
+
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/esri-leaflet-geocoder@3.0.0/dist/esri-leaflet-geocoder.css"
+		/>
+		<script src=" https://unpkg.com/esri-leaflet-geocoder@3.0.0/dist/esri-leaflet-geocoder.js"></script>
+
+		<script
+			src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js"
+			integrity="sha512-7rLAors9em7cR3/583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA=="
+			crossorigin=""
+		></script>
+
+		<script src="./assets/donnees/piste_cyclable.js"></script>
+		<title>Carte intéractive</title>
+	</head>
+	<body>
+		<header class="entete">
+			<h1 class="entete__titre">Les patrimoines de Montréal en vélo</h1>
+			<button class="entete__bouton" id="btn_geo">Trouves moi!</button>
+			<button class="entete__bouton" id="btn_stop" disabled>
+				Oublies moi!
+			</button>
+			<p class="contenant__information" id="afficher_position"></p>
+		</header>
+		<main>
+			<div class="contenant">
+				<div class="contenant__carte" id="map"></div>
+				<p class="contenant__signature">Élisabeth Desjardins</p>
+				<div class="legende">
+					<h2 class="legende__titre">Légende</h2>
+					<div class="legende__carte">
+						<h3 class="legende__carte__titre">Piste cyclable</h3>
+						<p class="legende__carte__annuelle">
+							Disponible 4 saisons :
+						</p>
+						<p class="legende__carte__saisonniere">
+							Disponibilité saisonnière :
+						</p>
+					</div>
+					<div class="legende__carte">
+						<h3 class="legende__carte__titre">Patrimoines</h3>
+						<p class="legende__carte__poitrimoines">
+							Sites patrimoniaux :
+						</p>
+						<h3 class="legende__carte__titre">Autres</h3>
+						<p class="legende__carte__position">Ta position :</p>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
