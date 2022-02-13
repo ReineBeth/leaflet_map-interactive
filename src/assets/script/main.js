@@ -1,7 +1,13 @@
+// let tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// 	maxZoom: 18,
+// });
+
 const maCarte = L.map('map', {
 	zoomControl: false,
 	attributionControl: false,
+	maxZoom: 20,
 }).setView([45.51, -73.68], 10.5);
+// .addLayer(tiles);
 
 // Sélection de couches
 
@@ -122,11 +128,59 @@ const coucheCyclables = L.geoJSON(pisteCyclables, {
 	})
 	.addTo(groupeInformations);
 
+// Centre d'intérêts
+
+const markerEau = L.icon({
+	iconUrl: './assets/images/eau.png',
+	iconSize: [30, 30],
+	iconAnchor: [15, 15],
+});
+const markerVelo = L.icon({
+	iconUrl: './assets/images/velo.png',
+	iconSize: [30, 30],
+	iconAnchor: [15, 15],
+});
+const markerPicnic = L.icon({
+	iconUrl: './assets/images/picnic.png',
+	iconSize: [30, 30],
+	iconAnchor: [15, 15],
+});
+const markerBanc = L.icon({
+	iconUrl: './assets/images/banc.png',
+	iconSize: [30, 30],
+	iconAnchor: [15, 15],
+});
+
+const markers = L.markerClusterGroup();
+
+const coucheInterets = L.geoJSON(pointsInterets, {
+	pointToLayer: function (feature, latlng) {
+		let markerInteret;
+		
+		if(feature.properties.Element == 'SUV') {
+			markerInteret = markerVelo;
+		} else if(feature.properties.Element == 'BNC') {
+			markerInteret = markerBanc;
+		} else if(feature.properties.Element == 'TPN') {
+			markerInteret = markerPicnic;
+		} else if(feature.properties.Element == 'FAB') {
+			markerInteret = markerEau;
+		}
+
+		return L.marker(latlng, {icon: markerInteret});
+	},
+});
+
+// Marker cluster
+markers.addLayer(coucheInterets);
+maCarte.addLayer(markers);
+
 // Overlays
 
 let overlays = {
 	Patrimoines: couchePatrimoines,
 	'Piste cyclable': coucheCyclables,
+	"Centre d'intérêt": coucheInterets,
 };
 
 L.control.layers(baseLayers, overlays).addTo(maCarte);

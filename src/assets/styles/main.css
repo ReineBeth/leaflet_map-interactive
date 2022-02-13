@@ -5,6 +5,15 @@ body {
 	font-family: 'Poppins', sans-serif;
 }
 
+ul {
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+	margin: 0.5rem 0;
+}
+
 .entete {
 	text-align: center;
 	background: #011627;
@@ -70,14 +79,14 @@ h3 {
 
 .legende {
 	background: #d6deeb;
-	width: 15%;
-	padding: 1rem;
+	width: 200px;
+	padding: 0.2rem 0.5rem;
 	border-radius: 5px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	margin: 0.5rem auto;
-	font-size: 0.8rem;
+	font-size: 0.7rem;
 	position: absolute;
 	left: 25px;
 	z-index: 500;
@@ -91,32 +100,44 @@ h3 {
 	text-align: center;
 }
 
-.legende__carte__annuelle,
-.legende__carte__saisonniere,
-.legende__carte__poitrimoines,
-.legende__carte__position {
+.legende__carte {
 	position: relative;
 }
 
-.legende__carte__annuelle::after,
-.legende__carte__saisonniere::after {
+.legende__carte__titre {
+	position: relative;
+}
+
+.legende__carte__titre.interet::after {
+	content: '';
+	position: absolute;
+	width: 65px; 
+	height: 15px;
+	background-image: url(../images/groupeInterets.png);
+	top: 50%;
+	transform: translateY(-50%);
+	right: -25px;
+}
+
+.legende__carte .annuelle::after,
+.legende__carte .saisonniere::after {
 	content: '';
 	position: absolute;
 	height: 5px;
 	width: 35px;
 	border-radius: 5px;
 	background-color: #56dbca;
-	right: -15px;
+	right: -25px;
 	top: 50%;
 	transform: translateY(-50%);
 }
 
-.legende__carte__saisonniere::after {
+.legende__carte .saisonniere::after {
 	background-color: #cc70d6;
 	right: -45px;
 }
 
-.legende__carte__poitrimoines::after {
+.legende__carte .poitrimoines::after {
 	content: '';
 	position: absolute;
 	width: 25px;
@@ -126,15 +147,67 @@ h3 {
 	border: 3px solid #154077;
 	top: 50%;
 	transform: translateY(-50%);
-	right: -40px;
+	right: -10px;
 }
 
-.legende__carte__position::after {
+.legende__carte .velo::after {
+	content: '';
+	position: absolute;
+	background-image: url(../images/velo.png);
+	background-position: center;
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 25px;
+}
+
+.legende__carte .eau::after {
+	content: '';
+	position: absolute;
+	background-image: url(../images/eau.png);
+	background-position: center;
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 15px;
+}
+
+.legende__carte .banc::after {
+	content: '';
+	position: absolute;
+	background-image: url(../images/banc.png);
+	background-position: center;
+	background-size: contain;
+	width: 18px;
+	height: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 75px;
+}
+.legende__carte .picnic::after {
+	content: '';
+	position: absolute;
+	background-image: url(../images/picnic.png);
+	background-position: center;
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 25px;
+}
+
+.legende__carte .position::after {
 	content: '';
 	background: url(../images/icon_person.png);
 	background-position: center;
-	width: 32px;
-	height: 32px;
+	background-size: contain;
+	width: 20px;
+	height: 20px;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -142,4 +215,38 @@ h3 {
 
 .leaflet-interactive {
 	position: absolute;
+}
+
+/* Changer Cluster Color */
+
+.marker-cluster-large {
+	background-color: rgb(190, 53, 67, 0.5) !important;
+}
+
+.marker-cluster-large div {
+	background-color: #be3543 !important;
+}
+
+.marker-cluster-medium {
+	background-color: rgb(255, 215, 20, 0.5) !important;
+}
+
+.marker-cluster-medium div {
+	background-color: #ffd714;
+}
+
+.marker-cluster-small {
+	background-color: rgb(170, 210, 102, 0.5) !important;
+}
+
+.marker-cluster-small div {
+	background-color: #aad266 !important;
+}
+
+.circle {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	background-image: url('../images/eau.png');
+	text-align: center;
 }

@@ -38,7 +38,34 @@
 			crossorigin=""
 		></script>
 
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.Default.css"
+			integrity="sha512-6ZCLMiYwTeli2rVh3XAPxy3YoR5fVxGdH/pz+KMCzRY2M65Emgkw00Yqmhh8qLGeYQ3LbVZGdmOX9KUjSKr0TA=="
+			crossorigin=""
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.css"
+			integrity="sha512-mQ77VzAakzdpWdgfL/lM1ksNy89uFgibRQANsNneSTMD/bj0Y/8+94XMwYhnbzx8eki2hrbPpDm0vD0CiT2lcg=="
+			crossorigin=""
+		/>
+		<script
+			src="https://unpkg.com/leaflet.markercluster@1.5.0/dist/leaflet.markercluster.js"
+			integrity="sha512-pWPELjRaw2ZdoT0PDi7iRpRlk1XX3rtnfejJ/HwskyojpHei+9hKpwdphC4yssNt4FM0TjMQOmMrk6ZYSn274w=="
+			crossorigin=""
+		></script>
+		<script
+			src="https://unpkg.com/esri-leaflet-cluster@2.1.0/dist/esri-leaflet-cluster.js"
+			integrity="sha512-fEdNFHisleVtEYdLhW4Z2RsR7TN6hLutE/+O4D+skfTNY2rlHm8HOZARPWkdrFFy/+i2KjFxcZAKTUWaVfbV0g=="
+			crossorigin=""
+		></script>
+
+		<!-- BASE DE DONNÉES -->
 		<script src="./assets/donnees/piste_cyclable.js"></script>
+		<script src="./assets/donnees/points_interets.js"></script>
 		<title>Carte intéractive</title>
 	</head>
 	<body>
@@ -58,20 +85,24 @@
 					<h2 class="legende__titre">Légende</h2>
 					<div class="legende__carte">
 						<h3 class="legende__carte__titre">Piste cyclable</h3>
-						<p class="legende__carte__annuelle">
-							Disponible 4 saisons :
-						</p>
-						<p class="legende__carte__saisonniere">
-							Disponibilité saisonnière :
-						</p>
-					</div>
-					<div class="legende__carte">
-						<h3 class="legende__carte__titre">Patrimoines</h3>
-						<p class="legende__carte__poitrimoines">
+						<ul>
+							<li class="legende__carte annuelle">Disponible 4 saisons :</li>
+							<li class="legende__carte saisonniere">Disponibilité saisonnière :</li>
+						</ul>
+						<h3 class="legende__carte titre">Patrimoines</h3>
+						<p class="legende__carte poitrimoines">
 							Sites patrimoniaux :
 						</p>
+						<h3 class="legende__carte__titre interet">Points d'intérêts</h3>
+						<ul>
+							<li class="legende__carte velo">Support à vélo :</li>
+							<li class="legende__carte eau">Fontaine à boire :</li>
+							<li class="legende__carte banc">Banc :</li>
+							<li class="legende__carte picnic">Table à pic-nic :</li>
+						</ul>
 						<h3 class="legende__carte__titre">Autres</h3>
-						<p class="legende__carte__position">Ta position :</p>
+						<p class="legende__carte position">Ta position :</p>
+
 					</div>
 				</div>
 			</div>
