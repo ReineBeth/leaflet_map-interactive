@@ -118,6 +118,7 @@ main {
 	font-size: 0.7rem;
 	margin: 0.5rem auto;
 	border: #011627 1px solid;
+	max-width: 500px;
 }
 
 .legende__titre {
@@ -140,13 +141,17 @@ main {
 	margin: 0.5rem 0;
 }
 
- .interet::after {
+.interet {
+	position: relative;
+}
+
+.interet::after {
 	content: '';
 	position: absolute;
 	width: 65px;
 	height: 15px;
-	background-image: url(../images/groupeInterets.png); 
-	right: 35px;
+	background-image: url(../images/groupeInterets.png);
+	right: -10px;
 }
 
 .annuelle::after,
@@ -156,17 +161,18 @@ main {
 	height: 5px;
 	width: 35px;
 	border-radius: 5px;
-	right: -25px;
 	top: 50%;
 	transform: translateY(-50%);
 }
 
 .annuelle::after {
 	background-color: #7eaed7;
+	right: 0;
 }
 
 .saisonniere::after {
 	background-color: #eca34f;
+	right: -15px;
 }
 
 .poitrimoines::after {
@@ -179,7 +185,7 @@ main {
 	border: 3px solid #154077;
 	top: 50%;
 	transform: translateY(-50%);
-	right: -10px;
+	right: 40px;
 }
 
 .velo::after {
@@ -192,7 +198,7 @@ main {
 	height: 25px;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 25px;
+	right: 50px;
 }
 
 .eau::after {
@@ -205,7 +211,7 @@ main {
 	height: 25px;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 15px;
+	right: 35px;
 }
 
 .banc::after {
@@ -218,7 +224,7 @@ main {
 	height: 20px;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 75px;
+	right: 110px;
 }
 .picnic::after {
 	content: '';
@@ -230,7 +236,7 @@ main {
 	height: 25px;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 25px;
+	right: 50px;
 }
 
 .position::after {
@@ -297,7 +303,6 @@ main {
 }
 
 @media screen and (min-width: 900px) {
-
 	.entete {
 		padding: 2rem;
 	}
@@ -350,7 +355,7 @@ main {
 	.contenant {
 		min-height: 600px;
 	}
-	
+
 	.mobile {
 		display: none;
 	}
@@ -367,7 +372,7 @@ main {
 		transform: translateY(-50%);
 		max-width: 200px;
 	}
-	
+
 	.legende__carte {
 		flex-direction: column;
 	}
@@ -379,7 +384,6 @@ main {
 	.interet::after {
 		right: 25px;
 	}
-	
 
 	.annuelle::after,
 	.saisonniere::after {

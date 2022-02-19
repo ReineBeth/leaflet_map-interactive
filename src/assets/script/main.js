@@ -33,8 +33,8 @@ let groupeInformations = L.layerGroup().addTo(maCarte);
 
 const urlPatrimoines =
 	'https://services6.arcgis.com/pG4MNR4EC4WmfCRT/ArcGIS/rest/services/PatrimoineLPC/FeatureServer/0';
-const requete = document.getElementById('requete');
-const optionRequete = document.querySelectorAll('#requete option');
+const requeteMobile = document.getElementById('requete_mobile');
+const requeteDesktop = document.getElementById('requete_desktop');
 
 const couchePatrimoines = L.esri
 	.featureLayer({
@@ -51,11 +51,25 @@ const couchePatrimoines = L.esri
 	})
 	.addTo(groupeInformations);
 
-requete.addEventListener('change', (event) => {
-	let option = requete.value;
+
+requeteMobile.addEventListener('change', (event) => {
+	let option = requeteMobile.value;
 
 	if (option == '1=1') {
-		couchePatrimoines.setWhere(requete.value);
+		couchePatrimoines.setWhere(requeteMobile.value);
+	} else {
+		let range = option.split('-');
+		couchePatrimoines.setWhere(
+			`Shape_Area >= ${range[0]} and Shape_Area <= ${range[1]}`
+		);
+	}
+});
+
+requeteDesktop.addEventListener('change', (event) => {
+	let option = requeteDesktop.value;
+
+	if (option == '1=1') {
+		couchePatrimoines.setWhere(requeteDesktop.value);
 	} else {
 		let range = option.split('-');
 		couchePatrimoines.setWhere(
