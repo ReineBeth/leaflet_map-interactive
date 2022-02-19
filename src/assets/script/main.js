@@ -33,6 +33,8 @@ let groupeInformations = L.layerGroup().addTo(maCarte);
 
 const urlPatrimoines =
 	'https://services6.arcgis.com/pG4MNR4EC4WmfCRT/ArcGIS/rest/services/PatrimoineLPC/FeatureServer/0';
+const requete = document.getElementById('requete');
+const optionRequete = document.querySelectorAll('#requete option');
 
 const couchePatrimoines = L.esri
 	.featureLayer({
@@ -44,10 +46,23 @@ const couchePatrimoines = L.esri
 		url: urlPatrimoines,
 	})
 	.bindPopup(function (layer) {
-		return `<h3>${layer.feature.properties.Nom}</h3> <br>
-				<a href="${layer.feature.properties.lien_web}" target="_blank">Liens vers le site web</a>`;
+		return `<h3 class="popup__titre">${layer.feature.properties.Nom}</h3> 
+				<a class="popup__liens" href="${layer.feature.properties.lien_web}" target="_blank">Liens vers le site web</a>`;
 	})
 	.addTo(groupeInformations);
+
+requete.addEventListener('change', (event) => {
+	let option = requete.value;
+
+	if (option == '1=1') {
+		couchePatrimoines.setWhere(requete.value);
+	} else {
+		let range = option.split('-');
+		couchePatrimoines.setWhere(
+			`Shape_Area >= ${range[0]} and Shape_Area <= ${range[1]}`
+		);
+	}
+});
 
 /* Piste cyclable */
 const coucheCyclables = L.geoJSON(pisteCyclables, {
@@ -56,10 +71,12 @@ const coucheCyclables = L.geoJSON(pisteCyclables, {
 		let color;
 		switch (est4Saison) {
 			case 'OUI':
-				color = '#56DBCA';
+				// Bleu car ouvert en hiver
+				color = '#7EAED7';
 				break;
 			case 'NON':
-				color = '#CC70D6';
+				// Orange une couleurs qui peut faire penser au saison tel que automne et été
+				color = '#ECA34F';
 				break;
 			default:
 				color = '#AAD266';
@@ -115,10 +132,10 @@ const coucheCyclables = L.geoJSON(pisteCyclables, {
 				typePrincipale = 'Aucune information sur le type';
 		}
 
-		return `<h3>Arrondissement ${nomArrondissement}</h3>
-				<p>Piste ${nombreVoie}</p>
-				<p>Type de voie : ${typePrincipale}</p>
-				<p>Longueur : ${longueurVoie}KM</p>`;
+		return `<h3 class="popup__titre">Arrondissement ${nomArrondissement}</h3>
+				<p class="popup__texte">Piste ${nombreVoie}</p>
+				<p class="popup__texte">Type de voie : ${typePrincipale}</p>
+				<p class="popup__texte">Longueur : ${longueurVoie}KM</p>`;
 	})
 	.addTo(groupeInformations);
 
@@ -148,7 +165,7 @@ const markerBanc = L.icon({
 const markers = L.markerClusterGroup();
 
 const coucheInterets = L.geoJSON(pointsInterets, {
-	pointToLayer: function (feature, latlng) {
+	pointToLayer(feature, latlng) {
 		let markerInteret;
 
 		if (feature.properties.Element == 'SUV') {
@@ -167,14 +184,14 @@ const coucheInterets = L.geoJSON(pointsInterets, {
 
 // Marker cluster
 markers.addLayer(coucheInterets);
-maCarte.addLayer(markers);
+groupeInformations.addLayer(markers);
 
 // Overlays
 
 let overlays = {
 	Patrimoines: couchePatrimoines,
 	'Piste cyclable': coucheCyclables,
-	"Centre d'intérêt": coucheInterets,
+	"Centre d'intérêts": markers,
 };
 
 L.control.layers(baseLayers, overlays).addTo(maCarte);
@@ -272,3 +289,65 @@ function stopLocation() {
 
 btnGeo.addEventListener('click', getPosition);
 btnStop.addEventListener('click', stopLocation);
+
+// Météo
+const meteoElement = document.getElementById('symbole_meteo');
+const urlMeteo = `http://api.openweathermap.org/data/2.5/weather?q=Montreal&units=metric&lang=fr&appid=${APIweather}`;
+const btnMeteo = document.getElementById('btn_meteo');
+let meteoDisplay;
+
+let xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function () {
+	if (xhttp.readyState == 4 && this.status == 200) {
+		let fichierJSON = JSON.parse(xhttp.responseText);
+		afficheMeteo({
+			temperature: fichierJSON.main.temp,
+			description: fichierJSON.weather[0].description,
+			urlIcon: `http://openweathermap.org/img/w/${fichierJSON.weather[0].icon}.png`,
+			coords: fichierJSON.coord,
+		});
+	}
+};
+xhttp.open('GET', urlMeteo);
+xhttp.send();
+
+function afficheMeteo(objMeteo) {
+	meteoElement.innerHTML = `
+					<p class="entete__meteo__titre">Météo</p>
+					<img src="${objMeteo.urlIcon}" title="${
+		objMeteo.description
+	}" class="entete__meteo__image">
+					<p class="entete__meteo__texte">${objMeteo.description}</p>
+					<p class="entete__meteo__texte">${objMeteo.temperature.toFixed()}&#8451</p>
+				`;
+}
+
+// Afficher la météo sur demande lorsque display est mobile
+if (innerWidth < 900) {
+	meteoDisplay = false;
+} else {
+	meteoDisplay = true;
+}
+
+window.addEventListener('resize', () => {
+	if (window.innerWidth < 900) {
+		meteoDisplay = false;
+		meteoElement.style.display = 'none';
+	} else {
+		meteoDisplay = true;
+		meteoElement.style.display = 'block';
+	}
+});
+
+function toggleMeteo(event) {
+	if (meteoDisplay) {
+		meteoDisplay = false;
+		meteoElement.style.display = 'none';
+	} else {
+		meteoDisplay = true;
+		meteoElement.style.display = 'block';
+	}
+}
+
+btnMeteo.addEventListener('click', toggleMeteo);

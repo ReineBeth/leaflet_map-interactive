@@ -75,34 +75,138 @@
 			<button class="entete__bouton" id="btn_stop" disabled>
 				Oublies moi!
 			</button>
+			<button class="entete__bouton" id="btn_meteo">
+				Afficher Météo
+			</button>
 			<p class="contenant__information" id="afficher_position"></p>
+			<div id="symbole_meteo" class="entete__meteo"></div>
 		</header>
 		<main>
 			<div class="contenant">
 				<div class="contenant__carte" id="map"></div>
 				<p class="contenant__signature">Élisabeth Desjardins</p>
-				<div class="legende">
+				<div class="legende desktop">
 					<h2 class="legende__titre">Légende</h2>
 					<div class="legende__carte">
+						<div>
+							<h3 class="legende__carte__titre">
+								Piste cyclable
+							</h3>
+							<ul>
+								<li class="legende__carte__items annuelle">
+									Disponible 4 saisons :
+								</li>
+								<li class="legende__carte__items saisonniere">
+									Disponibilité saisonnière :
+								</li>
+							</ul>
+						</div>
+						<div>
+							<h3 class="legende__carte__items titre">
+								Patrimoines
+							</h3>
+							<label>
+								Superficie du patrimoine :
+								<select id="requete">
+									<option value="1=1">Tous</option>
+									<option value="0-1000">
+										Moins de 1&nbsp;000m&#xB2;
+									</option>
+									<option value="1001-10000">
+										Entre 1&nbsp;001m&#xB2; et
+										10&nbsp;000m&#xB2;
+									</option>
+									<option value="10001-25000">
+										Entre 10&nbsp;001m&#xB2; et
+										25&nbsp;000m&#xB2;
+									</option>
+									<option value="25001-50000">
+										Entre 25&nbsp;001m&#xB2; et
+										50&nbsp;000m&#xB2;
+									</option>
+									<option value="50001-100000">
+										Entre 50&nbsp;001m&#xB2; et
+										100&nbsp;000m&#xB2;
+									</option>
+									<option value="100000-999999999">
+										Plus que 100&nbsp;000m&#xB2;
+									</option>
+								</select>
+							</label>
+							<p class="legende__carte__items poitrimoines">
+								Sites patrimoniaux :
+							</p>
+						</div>
+
+						<div>
+							<h3 class="legende__carte__titre interet">
+								Points d'intérêts
+							</h3>
+							<ul>
+								<li class="legende__carte__items velo">
+									Support à vélo
+								</li>
+								<li class="legende__carte__items eau">
+									Fontaine à boire
+								</li>
+								<li class="legende__carte__items banc">Banc</li>
+								<li class="legende__carte__items picnic">
+									Table à pic-nic
+								</li>
+							</ul>
+						</div>
+						<div>
+							<h3 class="legende__carte__titre">Autres</h3>
+							<p class="legende__carte__items position">
+								Ta position :
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="legende mobile">
+				<h2 class="legende__titre">Légende</h2>
+				<div class="legende__carte">
+					<div>
 						<h3 class="legende__carte__titre">Piste cyclable</h3>
 						<ul>
-							<li class="legende__carte annuelle">Disponible 4 saisons :</li>
-							<li class="legende__carte saisonniere">Disponibilité saisonnière :</li>
+							<li class="legende__carte__items annuelle">
+								Disponible 4 saisons :
+							</li>
+							<li class="legende__carte__items saisonniere">
+								Disponibilité saisonnière :
+							</li>
 						</ul>
-						<h3 class="legende__carte titre">Patrimoines</h3>
-						<p class="legende__carte poitrimoines">
+					</div>
+					<div>
+						<h3 class="legende__carte__items titre">Patrimoines</h3>
+						<p class="legende__carte__items poitrimoines">
 							Sites patrimoniaux :
 						</p>
-						<h3 class="legende__carte__titre interet">Points d'intérêts</h3>
-						<ul>
-							<li class="legende__carte velo">Support à vélo :</li>
-							<li class="legende__carte eau">Fontaine à boire :</li>
-							<li class="legende__carte banc">Banc :</li>
-							<li class="legende__carte picnic">Table à pic-nic :</li>
-						</ul>
-						<h3 class="legende__carte__titre">Autres</h3>
-						<p class="legende__carte position">Ta position :</p>
+					</div>
 
+					<div>
+						<h3 class="legende__carte__titre interet">
+							Points d'intérêts
+						</h3>
+						<ul>
+							<li class="legende__carte__items velo">
+								Support à vélo :
+							</li>
+							<li class="legende__carte__items eau">
+								Fontaine à boire :
+							</li>
+							<li class="legende__carte__items banc">Banc :</li>
+							<li class="legende__carte__items picnic">
+								Table à pic-nic :
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="legende__carte__titre">Autres</h3>
+						<p class="legende__carte__items position">
+							Ta position :
+						</p>
 					</div>
 				</div>
 			</div>
